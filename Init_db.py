@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS orders(
 	id INTEGER PRIMARY KEY,
     timestamp INTEGER,
     notes TEXT,
-    cust_id INTEGER,
+    cust_id INTEGER NOT NULL,
 	FOREIGN KEY(cust_id) REFERENCES customers(id)
 );
 """)
@@ -54,20 +54,21 @@ for phone, name in customers.items():
 	cursor.execute("INSERT INTO customers (name, phone) VALUES (?, ?)", (name,phone))
      
 for name, price in items.items():
-     cursor.execute("INSERT INTO items (name, price) VALUES (?, ?)", (name,price))
+    cursor.execute("INSERT INTO items (name, price) VALUES (?, ?)", (name,price))
 
 for order in order_list:
-     cursor.execute("SELECT id FROM customers WHERE phone= ?;", (order["phone"],))
-     cust_id = cursor.fetchone()[0]
-     cursor.execute("INSERT INTO orders (notes, timestamp, cust_id) VALUES (?, ?, ?);",
-            (order["notes"], order["timestamp"],cust_id))
-     order_id = cursor.lastrowid
+    cursor.execute("SELECT id FROM customers WHERE phone= ?;", (order["phone"],))
+    cust_id = cursor.fetchone()[0]
+    if cust_id != None:
+        break  
+    cursor.execute("INSERT INTO orders (notes, timestamp, cust_id) VALUES (?, ?, ?);", (order["notes"], order["timestamp"],cust_id))
+    order_id = cursor.lastrowid
      
-     for item in order["items"]:
-          cursor.execute("SELECT id FROM items WHERE name=?;",(item["name"],))
-          item_id = cursor.fetchone()[0]
-          cursor.execute("INSERT INTO order_list (order_id, item_id) VALUES (?, ?);",
-                (order_id, item_id))
+    for item in order["items"]:
+        cursor.execute("SELECT id FROM items WHERE name=?;",(item["name"],))
+        item_id = cursor.fetchone()[0]
+        cursor.execute("INSERT INTO order_list (order_id, item_id) VALUES (?, ?);", (order_id, item_id))
+        item_id = cursor.lastrowid
 
 connection.commit()
 connection.close()
