@@ -18,7 +18,8 @@ In the Init_db.py script,
 Lines 3-4, set up the connection to our database: db.sqlite.
 Lines 6-39 create the tables and their columns (most importantly their primary and foreign keys).
 Lines 41-42 open up the json file that will be used for all the customers, orders, and items.
-Lines 44-71 queries the database.
+Lines 44-71 query the database.
 Lines 73-74 commit the rules and close the database.
 
 In the main.py script,
+
