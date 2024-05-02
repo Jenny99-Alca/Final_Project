@@ -8,9 +8,10 @@ To be imported: sqlite3, FAST API, and uvicorn in order to begin.
 The client/user will have access to create, read, update, or delete from three objects: customers, items, and orders. This will be done on the front end through FAST API (a web API).
 
 In this repo you will find:
-2 scripts, Init_db.py and main.py.
 1 json file (example_orders.json) where all of the customers, orders, and items are.
-1 file (db.sqlite) where our SQLite database is.
+1 db file (db.sqlite) where our SQLite database is. (this is created, if it doesn't exist, when running Init_db.py)
+2 scripts, Init_db.py and main.py. 
+(The Init_db.py will initialize an empty database using relational constraints (primary keys and foreign keys) from the example_orders.json file. The main.py script is the FastAPI backend that must read and write from db.sqlite.)
 
 
 In the Init_db.py script, 
@@ -20,4 +21,4 @@ Lines 41-42 open up the json file that will be used for all the customers, order
 Lines 44-71 queries the database.
 Lines 73-74 commit the rules and close the database.
 
-In the main.py script, 
+In the main.py script,
