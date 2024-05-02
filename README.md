@@ -1,11 +1,11 @@
 Name: Jennifer Alcantara This README file is for my final project for class IS6011J2-Web Systems Development.
 The following scripts do as follows:
 
-A REST API backend for the restaurant 'Dosa' will be created for this project. We will be importing SQLite3 and fast API into our scripts to initialize a database and then, use a web API to make updates to the database/data on the front end as the client. 
+For this project, A REST API backend for the restaurant 'Dosa' was created. We imported SQLite3 and fast API into our scripts to initialize a database and then, used a web API to make updates to the database/data on the front end as the client. 
 
-You will need to import sqlite3, FAST API, and uvicorn to begin.
+To be imported: sqlite3, FAST API, and uvicorn in order to begin.
 
-The client/user will have access to create, read, update, or delete three objects: customers, items, and orders, through the web API (fast API).
+The client/user will have access to create, read, update, or delete from three objects: customers, items, and orders. This will be done on the front end through FAST API (a web API).
 
 In this repo you will find:
 2 scripts, Init_db.py and main.py.
