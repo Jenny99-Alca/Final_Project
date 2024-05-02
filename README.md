@@ -1,4 +1,6 @@
+------------------------
 Name: Jennifer Alcantara This README file is for my final project for class IS6011J2-Web Systems Development.
+------------------------
 The following scripts do as follows:
 
 For this project, A REST API backend for the restaurant 'Dosa' was created. We imported SQLite3 and fast API into our scripts to initialize a database and then, used a web API to make updates to the database/data on the front end as the client. 
