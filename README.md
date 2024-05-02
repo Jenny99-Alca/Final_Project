@@ -4,9 +4,10 @@ This README file is for my final project for class IS6011J2-Web Systems Developm
 ------------------------
 The following scripts do as follows:
 
-For this project, A REST API backend for the restaurant 'Dosa' was created. We imported SQLite3 and fast API into our scripts to initialize a database and then, used a web API to make updates to the database/data on the front end as the client. 
+For this project, A REST API backend for the restaurant 'Dosa' was created. 
+We imported and used SQLite3 and FAST API (there are more, but these are the most important modules) in our scripts to initialize a database, query, set rules, and create a web API to make updates to the database/data through the front end as the "client". 
 
-To be imported: sqlite3, FAST API, and uvicorn in order to begin.
+To be installed: sqlite3, FastAPI, and uvicorn in order to begin.
 
 The client/user will have access to create, read, update, or delete from three objects: customers, items, and orders. This will be done on the front end through FAST API (a web API).
 We will have the ability to complete these actions with methods: POST, GET, DELETE, and PUT (in the main.py file).
@@ -35,7 +36,7 @@ Lines 142-207 is where the Orders methods were applied.
 Final steps to access your fast API:
 ------------------------------------
 First, run your Init_db.py file to create the database file.
-Next, run your main.py file and then run the command: "uvicorn main:app --reload". (This runs the application for you.)
+Next, run your main.py file and then run the command: "uvicorn main:app --reload". (This runs the live server/application for you.)
 Finally, go into your browser (Safari may act funky, use a different web browser) and copy and paste the HTTP link provided upon running the above uvicorn command and then add "/docs" to the end: "http://127.0.0.1:8000/docs"
 
 You'll then be able to complete your actions in a very cool way through your web API: FAST API - Swagger UI!
