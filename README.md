@@ -9,12 +9,13 @@ The client/user will have access to create, read, update, or delete from three o
 We will have the ability to complete these actions with methods: POST, GET, DELETE, and PUT (in the main.py file).
 
 In this repo you will find:
+---------------------------
 1 json file (example_orders.json) where all of the customers, orders, and items are.
 1 db file (db.sqlite) where our SQLite database is. (this is created, if it doesn't exist, when running Init_db.py)
 2 scripts, Init_db.py and main.py. 
 (The Init_db.py will initialize an empty database using relational constraints (primary keys and foreign keys) from the example_orders.json file. The main.py script is the FastAPI backend that must read and write from db.sqlite.)
 
-In the Init_db.py script, 
+In the Init_db.py script,
 Lines 3-4, set up the connection to our database: db.sqlite.
 Lines 6-39 create the tables and their columns (most importantly their primary and foreign keys).
 Lines 41-42 open up the json file that will be used for all the customers, orders, and items.
@@ -36,6 +37,6 @@ Finally, go into your browser (Safari may act funky, use a different web browser
 
 You'll then be able to complete your actions in a very cool way through your web API: FAST API - Swagger UI!
 
-*-------------------------------------------------------------------------------*
+*----------------------------------------------------*
 Thanks Professor !!!
-*-------------------------------------------------------------------------------*
+*----------------------------------------------------*
