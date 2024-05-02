@@ -68,12 +68,10 @@ def delete_customer(cust_id: int):
         raise HTTPException(status_code=400, detail="{total_changes} rows were affected")
     return total_changes
 
-  #update_customer_encoded = jsonable_encoder(customer)
-  #customer[cust_id] = update_customer_encoded
 
-    #return update_customer_encoded
 
 #####Items
+#####ItemsList
 
 class Item(BaseModel):
       item_id: int | None = None
@@ -139,50 +137,48 @@ def delete_item(item_id: int):
 
 #####Orders 
 
-"""class Order(BaseModel):
+class Order(BaseModel):
+    #order_id: int | None = None
     cust_id: int | None = None
-    #######order_id: int | None = None
     timestamp: int
-    notes: string
-"""
-"""@app.post("/orders/")
+    notes: str
+
+@app.post("/orders/")
 def create_order(order: Order):
-    if order.order_id != None:
-        raise HTTPException(status_code=400, detail="order_id can't be set on post request")
+    if order.cust_id != None:
+        raise HTTPException(status_code=400, detail="cust_id can't be set on post request")
     
     connection = sqlite3.connect("db.sqlite")
     cursor = connection.cursor()
-    cursor.execute("INSERT INTO orders ( gvcust_id, timestamp, notes) VALUES (?, ?, ?, ?, ?);",(order.order_id, order.item_id, order.cust_id, order.timestamp, order.notes))
-    order.order_id = cursor.lastrowid
+    cursor.execute("INSERT INTO orders (cust_id, timestamp, notes) VALUES (?, ?, ?);",(order.cust_id, order.timestamp, order.notes))
+    order.cust_id = cursor.lastrowid
     connection.commit()
     connection.close()
 
     return order
-"""
-"""
-@app.get("/orders/{order_id}")
-def read_order(order_id: int, order: Order):
+
+@app.get("/orders/{cust_id}")
+def read_order(cust_id: int, order: Order):
     connection = sqlite3.connect("db.sqlite")
     cursor = connection.cursor()
-    cursor.execute("SELECT id FROM orders WHERE order_id= ?", (order_id,))
+    cursor.execute("SELECT id FROM orders WHERE order_id= ?", (cust_id,))
     order = cursor.fetchone()
     connection.close()
 
     if order != None:
-            return Order (order_id=order[0], item_id=order[1], cust_id=order[2], timestamp=order[3], notes=order[4])       
+            return Order (cust_id=order[0], timestamp=order[1], notes=order[2])       
     else:
          raise HTTPException(status_code=404, detail="Order not found")
-"""  
-"""
-@app.put("/orders/{order_id}")
-def update_order(order_id: int, order: Order):
-    if order.order_id != None and order.order_id != order_id:
-        raise HTTPException(status_code=404, detail="Order ID doesn't match ID in Path")
+
+@app.put("/orders/{cust_id}")
+def update_order(cust_id: int, order: Order):
+    if order.cust_id != None and order.cust_id != cust_id:
+        raise HTTPException(status_code=404, detail="Cust ID doesn't match ID in Path")
     
-    order.order_id = order_id
+    order.cust_id = cust_id
     connection = sqlite3.connect("db.sqlite")
     cursor = connection.cursor()
-    cursor.execute("UPDATE orders SET item_id=?, timestamp=?, notes=? WHERE id=?;", (order.item_id, order.timestamp, order.notes, order_id))
+    cursor.execute("UPDATE orders SET timestamp=?, notes=? WHERE id=?;", (order.timestamp, order.notes, cust_id))
     total_changes = connection.total_changes
     connection.commit()
     connection.close()
@@ -190,13 +186,13 @@ def update_order(order_id: int, order: Order):
     if total_changes == 0:
         raise HTTPException(status_code=404, detail="Order not found")
     return order
-"""
-"""
-@app.delete("/orders/{order_id}")
-def delete_order(order_id: int):
+
+
+@app.delete("/orders/{cust_id}")
+def delete_order(cust_id: int):
     connection = sqlite3.connect("db.sqlite")
     cursor = connection.cursor()
-    cursor.execute("DELETE FROM orders WHERE id=? ", (order_id))
+    cursor.execute("DELETE FROM orders WHERE id=? ", (cust_id))
     total_changes = connection.total_changes
     connection.commit()
     connection.close()
@@ -204,4 +200,3 @@ def delete_order(order_id: int):
     if total_changes != 1:
         raise HTTPException(status_code=400, detail="{total_changes} rows were affected")
     return total_changes
-"""
