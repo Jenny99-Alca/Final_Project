@@ -140,9 +140,8 @@ def delete_item(item_id: int):
 #####Orders 
 
 """class Order(BaseModel):
-    item_id: int | None = None
     cust_id: int | None = None
-    order_id: int | None = None
+    #######order_id: int | None = None
     timestamp: int
     notes: string
 """
@@ -153,7 +152,7 @@ def create_order(order: Order):
     
     connection = sqlite3.connect("db.sqlite")
     cursor = connection.cursor()
-    cursor.execute("INSERT INTO orders (order_id, item_id, cust_id, timestamp, notes) VALUES (?, ?, ?, ?, ?);",(order.order_id, order.item_id, order.cust_id, order.timestamp, order.notes))
+    cursor.execute("INSERT INTO orders ( gvcust_id, timestamp, notes) VALUES (?, ?, ?, ?, ?);",(order.order_id, order.item_id, order.cust_id, order.timestamp, order.notes))
     order.order_id = cursor.lastrowid
     connection.commit()
     connection.close()
