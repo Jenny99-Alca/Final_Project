@@ -29,7 +29,7 @@ Lines 73-74 commit the rules and close the database.
 In the main.py script,
 Line 7 enables us to use the REST interface to call our functions in our main.py file to implement applications.
 Lines 9-69 is where the Customer's methods are applied.
-Lines 78-138 is where the Item's methods are applied.
+Lines 76-136 is where the Item's methods are applied.
 Lines 142-207 is where the Orders methods were applied.
 
 ------------------------------------
