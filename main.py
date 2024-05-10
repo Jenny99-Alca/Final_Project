@@ -139,18 +139,20 @@ def delete_item(item_id: int):
 
 class Order(BaseModel):
     order_id: int | None = None
-    #cust_id: int | None = None
+   #cust_id: int | None = None
     timestamp: int
     notes: str
 
 @app.post("/orders/")
-def create_order(order: Order):
+def create_order(order_id: int, order: Order):
     if order.order_id != None:
         raise HTTPException(status_code=400, detail="order_id can't be set on post request")
+    #if order.cust_id != None :
+        #raise HTTPException(status_code=400, detail="cust_id can't be set on post request")
     
     connection = sqlite3.connect("db.sqlite")
     cursor = connection.cursor()
-    cursor.execute("INSERT INTO orders (order_id, timestamp, notes) VALUES (?, ?, ?);",(order.order_id, order.timestamp, order.notes))
+    cursor.execute("INSERT INTO orders (order_id, timestamp, notes) VALUES (?, ?, ?);",(order.order_id, order.timestamp, order.notes,))
     order.order_id = cursor.lastrowid
     connection.commit()
     connection.close()
@@ -161,7 +163,7 @@ def create_order(order: Order):
 def read_order(order_id: int, order: Order):
     connection = sqlite3.connect("db.sqlite")
     cursor = connection.cursor()
-    cursor.execute("SELECT id FROM orders WHERE order_id= ?", (order_id,))
+    cursor.execute("SELECT id FROM orders WHERE order_id= ?", (order_id))
     order = cursor.fetchone()
     connection.close()
 
@@ -178,7 +180,7 @@ def update_order(order_id: int, order: Order):
     order.order_id = order_id
     connection = sqlite3.connect("db.sqlite")
     cursor = connection.cursor()
-    cursor.execute("UPDATE orders SET timestamp=?, notes=? WHERE id=?;", (order.timestamp, order.notes, order_id))
+    cursor.execute("UPDATE orders SET timestamp=?, notes=? WHERE id=?;", (order.timestamp, order.notes, order_id,))
     total_changes = connection.total_changes
     connection.commit()
     connection.close()
